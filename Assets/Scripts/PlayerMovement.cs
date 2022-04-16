@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour{
     bool isFacingRight = true;
     float horizontalMovement;
 
-
     [Header("Gravity")]
     [SerializeField] bool onGround = false;
     [SerializeField] float jumpForce = 20f;
@@ -27,6 +26,7 @@ public class PlayerMovement : MonoBehaviour{
     public bool GetOnGround(){
         return onGround;
     }
+
 
     public Vector3 GetColliderOffset() {
         return colliderOffset;
@@ -59,6 +59,16 @@ public class PlayerMovement : MonoBehaviour{
             || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLength, groundLayer);
     }
 
+
+    public void JumpOff() {
+        RaycastHit2D hit1 = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLength, groundLayer);
+        RaycastHit2D hit2 = Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLength, groundLayer);
+
+        if(hit1 != false)
+            hit1.collider.gameObject.GetComponent<EffectorCheck>().RotateDown();
+        if(hit2 != false)
+            hit2.collider.gameObject.GetComponent<EffectorCheck>().RotateDown();
+    }
     public void StartJump(){
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
@@ -83,5 +93,6 @@ public class PlayerMovement : MonoBehaviour{
             transform.localScale = localScale;
         }
     }
+
 
 }

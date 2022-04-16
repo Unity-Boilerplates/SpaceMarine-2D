@@ -17,4 +17,11 @@ public class PlayerInput : MonoBehaviour
         movement.SetHorizontalMovement(context.ReadValue<Vector2>().x);
     }
 
+
+    public void JumpOff(InputAction.CallbackContext context) {
+        if (context.performed) movement.JumpOff();
+    }
+
+
+
 }
