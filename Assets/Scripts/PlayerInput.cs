@@ -6,20 +6,31 @@ using UnityEngine.InputSystem;
 public class PlayerInput : MonoBehaviour
 {
     [SerializeField] PlayerMovement movement;
-    
-    public void Jump(InputAction.CallbackContext context)
-    {
-        if (context.performed && movement.GetOnGround()) movement.StartJump();
-        if (context.canceled && movement.GetYVelocity() > 0f) movement.StopJump();
+    bool pressingDown = false;
+
+    public void JumpPress(InputAction.CallbackContext context){
+        if (!pressingDown) Jump(context);
+        else PlatformJumpOff();
     }
-    public void Move(InputAction.CallbackContext context)
-    {
+
+
+    public void DownPress(InputAction.CallbackContext context) {
+        if (context.performed) pressingDown = true;
+        if (context.canceled) pressingDown = false;
+    }
+
+    public void MoveStick(InputAction.CallbackContext context) {
         movement.SetHorizontalMovement(context.ReadValue<Vector2>().x);
     }
 
 
-    public void JumpOff(InputAction.CallbackContext context) {
-        if (context.performed) movement.JumpOff();
+    private void Jump(InputAction.CallbackContext context) {
+        if (context.performed && movement.GetOnGround()) movement.StartJump();
+        if (context.canceled && movement.GetYVelocity() > 0f) movement.StopJump();
+    }
+
+    void PlatformJumpOff() {
+        movement.JumpOff();
     }
 
 
