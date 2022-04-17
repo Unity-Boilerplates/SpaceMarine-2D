@@ -55,13 +55,15 @@ public class PlayerMovement : MonoBehaviour{
 
 
     public void JumpOff() {
-        RaycastHit2D hit1 = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLength, groundLayer);
-        RaycastHit2D hit2 = Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLength, groundLayer);
+        List<RaycastHit2D> groundCasts = new List<RaycastHit2D>();
 
-        if(hit1 != false)
-            hit1.collider.gameObject.GetComponent<EffectorCheck>().RotateDown();
-        if(hit2 != false)
-            hit2.collider.gameObject.GetComponent<EffectorCheck>().RotateDown();
+        groundCasts.Add(Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLength, groundLayer));
+        groundCasts.Add(Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLength, groundLayer));
+
+        foreach (RaycastHit2D hit in groundCasts) {
+            if (hit != false && hit.collider.gameObject.tag == "Platform")
+                hit.collider.gameObject.GetComponent<EffectorCheck>().RotateDown();
+        }
     }
     public void StartJump(){
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);

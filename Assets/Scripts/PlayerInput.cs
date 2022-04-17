@@ -14,13 +14,13 @@ public class PlayerInput : MonoBehaviour
     }
 
 
-    public void DownPress(InputAction.CallbackContext context) {
-        if (context.performed) pressingDown = true;
-        if (context.canceled) pressingDown = false;
-    }
-
     public void MoveStick(InputAction.CallbackContext context) {
         movement.SetHorizontalMovement(context.ReadValue<Vector2>().x);
+
+        if (context.ReadValue<Vector2>().y <= -0.5) pressingDown = true;
+        else pressingDown = false;
+        
+
     }
 
 
