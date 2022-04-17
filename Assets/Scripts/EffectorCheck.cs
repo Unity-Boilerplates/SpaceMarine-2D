@@ -18,7 +18,7 @@ public class EffectorCheck : MonoBehaviour {
     }
     public void RotateDown() {
         effector.rotationalOffset = 180f;
-        waitTime = 0.1f;
+        waitTime = 0.2f;
 
     }
 

@@ -8,8 +8,10 @@ public class PlayerMovement : MonoBehaviour{
     
     [Header("Movement")]
     [SerializeField] float movementSpeed = 12f;
+    [SerializeField] Transform feet;
     bool isFacingRight = true;
     float horizontalMovement;
+   
 
     [Header("Gravity")]
     [SerializeField] bool touchingGround = false;
@@ -36,6 +38,10 @@ public class PlayerMovement : MonoBehaviour{
         return touchingGround;
     }
 
+    public Transform GetFeetPosition() {
+        return feet;
+    }
+
     public Vector3 GetColliderOffset() {
         return colliderOffset;
     }
@@ -57,8 +63,8 @@ public class PlayerMovement : MonoBehaviour{
     public void JumpOff() {
         List<RaycastHit2D> groundCasts = new List<RaycastHit2D>();
 
-        groundCasts.Add(Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLength, groundLayer));
-        groundCasts.Add(Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLength, groundLayer));
+        groundCasts.Add(Physics2D.Raycast(feet.position + colliderOffset, Vector2.down, groundLength, groundLayer));
+        groundCasts.Add(Physics2D.Raycast(feet.position - colliderOffset, Vector2.down, groundLength, groundLayer));
 
         foreach (RaycastHit2D hit in groundCasts) {
             if (hit != false && hit.collider.gameObject.tag == "Platform")
@@ -78,8 +84,8 @@ public class PlayerMovement : MonoBehaviour{
 
 
     void checkTouchingGround() {
-        touchingGround = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLength, groundLayer)
-            || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLength, groundLayer);
+        touchingGround = Physics2D.Raycast(feet.position + colliderOffset, Vector2.down, groundLength, groundLayer)
+            || Physics2D.Raycast(feet.position - colliderOffset, Vector2.down, groundLength, groundLayer);
     }
 
     void MovePlayer() {
