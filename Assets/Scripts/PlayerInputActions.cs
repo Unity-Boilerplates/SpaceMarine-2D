@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInput : MonoBehaviour
+public class PlayerInputActions : MonoBehaviour
 {
     [SerializeField] PlayerMovement movement;
     bool pressingDown = false;
