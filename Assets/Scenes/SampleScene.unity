@@ -495,6 +495,10 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 7242389829261440846, guid: 4800dbd3a7ef58e4bbe20c3f8ea38dff, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4800dbd3a7ef58e4bbe20c3f8ea38dff, type: 3}
 --- !u!1001 &7285262965526715217

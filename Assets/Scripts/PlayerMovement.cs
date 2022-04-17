@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour{
     float horizontalMovement;
 
     [Header("Gravity")]
-    [SerializeField] bool onGround = false;
+    [SerializeField] bool touchingGround = false;
     [SerializeField] float jumpForce = 20f;
     Rigidbody2D rb;
 
@@ -22,11 +22,19 @@ public class PlayerMovement : MonoBehaviour{
     [SerializeField] Vector3 colliderOffset;
     [SerializeField] LayerMask groundLayer;
 
-
-    public bool GetOnGround(){
-        return onGround;
+    void Start() {
+        rb = GetComponent<Rigidbody2D>();
     }
 
+    void Update() {
+        MovePlayer();
+        checkTouchingGround();
+    }
+
+
+    public bool GetTouchingGround(){
+        return touchingGround;
+    }
 
     public Vector3 GetColliderOffset() {
         return colliderOffset;
@@ -44,20 +52,6 @@ public class PlayerMovement : MonoBehaviour{
         return rb.velocity.y;
     }
 
-
-    void Start(){
-        rb = GetComponent<Rigidbody2D>();
-    }
-     void Update(){
-        MovePlayer();
-        GheckGround();
-
-    }
-
-    void GheckGround(){
-        onGround = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLength, groundLayer)
-            || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLength, groundLayer);
-    }
 
 
     public void JumpOff() {
@@ -77,13 +71,19 @@ public class PlayerMovement : MonoBehaviour{
         rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
     }
 
-    void MovePlayer()
-    {
+
+
+
+
+    void checkTouchingGround() {
+        touchingGround = Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLength, groundLayer)
+            || Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLength, groundLayer);
+    }
+
+    void MovePlayer() {
         transform.Translate(new Vector3(horizontalMovement, 0f, 0f) * movementSpeed * Time.deltaTime);
         Flip(horizontalMovement);
     }
-
-
 
     void Flip(float horizontalMovement){
         if (isFacingRight && horizontalMovement < 0f || !isFacingRight && horizontalMovement > 0f){

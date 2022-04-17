@@ -25,7 +25,7 @@ public class PlayerInput : MonoBehaviour
 
 
     private void Jump(InputAction.CallbackContext context) {
-        if (context.performed && movement.GetOnGround()) movement.StartJump();
+        if (context.performed && movement.GetTouchingGround()) movement.StartJump();
         if (context.canceled && movement.GetYVelocity() > 0f) movement.StopJump();
     }
 
