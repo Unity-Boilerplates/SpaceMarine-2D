@@ -43,9 +43,10 @@ GameObject:
   - component: {fileID: 7242389829261440846}
   - component: {fileID: 5402288322206789328}
   - component: {fileID: 7242389829261440844}
+  - component: {fileID: 5902882200462362924}
+  - component: {fileID: 1104448655091640168}
   - component: {fileID: 7242389829261440819}
   - component: {fileID: 7242389829261440841}
-  - component: {fileID: 7242389829261440842}
   - component: {fileID: 1239650569}
   m_Layer: 0
   m_Name: Character
@@ -263,6 +264,35 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &5902882200462362924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7242389829261440818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be7d14286c8194c4d974cd125a11152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animations: {fileID: 1104448655091640168}
+  movement: {fileID: 7242389829261440819}
+  input: {fileID: 7242389829261440841}
+--- !u!114 &1104448655091640168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7242389829261440818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0530f4af1f6add4e8555651cb4f65df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 5902882200462362924}
+  animator: {fileID: 1239650569}
 --- !u!114 &7242389829261440819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,6 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5806f005b0ecd144d97af2b9509bf605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 5902882200462362924}
   movementSpeed: 12
   feet: {fileID: 974818018}
   touchingGround: 0
@@ -296,20 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe6f384fab09341489f7657fba872a45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {fileID: 7242389829261440819}
---- !u!114 &7242389829261440842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7242389829261440818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73ee26d613fe2e24986a0617214b82ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movement: {fileID: 7242389829261440819}
+  playerController: {fileID: 5902882200462362924}
 --- !u!95 &1239650569
 Animator:
   serializedVersion: 3
