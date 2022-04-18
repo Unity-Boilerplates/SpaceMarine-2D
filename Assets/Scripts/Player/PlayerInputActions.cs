@@ -18,12 +18,13 @@ public class PlayerInputActions : MonoBehaviour
 
 
     public void MoveStick(InputAction.CallbackContext context) {
-        playerController.MovePlayer(context.ReadValue<Vector2>().x);
-
-        if (context.ReadValue<Vector2>().y <= -0.5) pressingDown = true;
+        Debug.Log(context.ReadValue<Vector2>().y);
+        if (context.ReadValue<Vector2>().y <= -0.9f  ) pressingDown = true;
         else pressingDown = false;
-        
 
+
+        if (!pressingDown) playerController.MovePlayer(context.ReadValue<Vector2>().x);
+        playerController.SetStatus("Ducking", !pressingDown);
     }
 
 

@@ -20,7 +20,8 @@ public class PlayerController : MonoBehaviour
         status = new Dictionary<string, bool>();
         status.Add("TouchingGround", false);
         status.Add("Jumping", false);
-        status.Add("Running", false);
+        status.Add("Ducking", false);
+
 
     }
 
@@ -44,10 +45,14 @@ public class PlayerController : MonoBehaviour
 
 
     void TouchingGroundActions() {
-        if (GetStatus("TouchingGround")) SetStatus("Jumping", false);
+        if (GetStatus("TouchingGround")) {
+            SetStatus("Jumping", false);
+            animations.DuckingAnimationHandler();
+        }
         else SetStatus("Jumping", true);
 
         animations.JumpAnimationHandler();
+        
     }
     public void MovePlayer(float horizontalMovement) {
         movement.SetHorizontalMovement(horizontalMovement);
