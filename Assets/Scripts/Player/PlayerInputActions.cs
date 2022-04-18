@@ -27,11 +27,13 @@ public class PlayerInputActions : MonoBehaviour
         playerController.SetStatus("Ducking", !pressingDown);
     }
 
+    public void ShotPress(InputAction.CallbackContext context){
+        if(context.performed) playerController.Shot();
+    }
 
     private void Jump(InputAction.CallbackContext context) {
         if (context.performed) playerController.Jump();
         if (context.canceled) playerController.StopJump();
-
     }
 
     void PlatformJumpOff() {

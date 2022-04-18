@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour{
     [Header("Movement")]
     [SerializeField] float movementSpeed = 12f;
     [SerializeField] Transform feet;
-    bool isFacingRight = true;
     float horizontalMovement;
    
 
@@ -89,12 +88,14 @@ public class PlayerMovement : MonoBehaviour{
     }
 
     void Flip(float horizontalMovement){
-        if (isFacingRight && horizontalMovement < 0f || !isFacingRight && horizontalMovement > 0f){
-            isFacingRight = !isFacingRight;
+        if (playerController.GetStatus("FacingRight") && horizontalMovement < 0f || !playerController.GetStatus("FacingRight") && horizontalMovement > 0f){
+            playerController.SetStatus("FacingRight",!playerController.GetStatus("FacingRight"));
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
         }
+
+        
     }
     void OnDrawGizmos() {
         Gizmos.color = Color.red;

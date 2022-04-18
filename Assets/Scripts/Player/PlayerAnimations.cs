@@ -26,7 +26,10 @@ public class PlayerAnimations : MonoBehaviour
 
     public void DuckingAnimationHandler() {
         animator.SetBool("IsDucking", !playerController.GetStatus("Ducking"));
+    }
 
+    public void AttackAnimationHandler(){
+        if(playerController.GetStatus("TouchingGround")) animator.SetBool("IsAttacking", playerController.GetStatus("Attacking"));
     }
 
 

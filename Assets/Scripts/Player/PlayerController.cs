@@ -9,18 +9,25 @@ public class PlayerController : MonoBehaviour
     [SerializeField] PlayerMovement movement;
     [SerializeField] PlayerInputActions input;
 
-    [SerializeField] Dictionary<string, bool> status;
 
-    [SerializeField] bool jumpingState;
-    [SerializeField] bool idleState;
-    [SerializeField] bool runningState;
-    [SerializeField] bool shootingState;
+    [Header ("Shotting")]
+    [SerializeField] GameObject bullet;
+    [SerializeField] Transform shotPoint;
+
+
+    [Header ("Gizmos")]
+    [SerializeField] bool showShotPoints;
+    Dictionary<string, bool> status;
+
+    
 
     void Start() {
         status = new Dictionary<string, bool>();
         status.Add("TouchingGround", false);
         status.Add("Jumping", false);
         status.Add("Ducking", false);
+        status.Add("FacingRight",true);
+        status.Add("Attacking",false);
 
 
     }
@@ -52,6 +59,7 @@ public class PlayerController : MonoBehaviour
         else SetStatus("Jumping", true);
 
         animations.JumpAnimationHandler();
+        animations.AttackAnimationHandler();
         
     }
     public void MovePlayer(float horizontalMovement) {
@@ -80,4 +88,21 @@ public class PlayerController : MonoBehaviour
         return movement.GetFeetPosition();
     }
 
+    public void Shot(){
+        if(GetStatus("TouchingGround")) SetStatus("Attacking",true);
+        GameObject newShot;
+        newShot = Instantiate(bullet, shotPoint.position, Quaternion.identity);
+        newShot.transform.parent = GameObject.Find("__Dynamic").transform; 
+        
+        if(GetStatus("FacingRight")) newShot.GetComponent<BulletController>().SetDirection(Vector3.right);
+        if(!GetStatus("FacingRight")) newShot.GetComponent<BulletController>().SetDirection(Vector3.left);
+    }
+
+    public void EndShot(){
+        SetStatus("Attacking",false);
+    }
+    void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        if(showShotPoints) Gizmos.DrawWireSphere(this.shotPoint.position, 0.1f);
+    }
 }
