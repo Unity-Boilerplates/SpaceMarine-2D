@@ -7,6 +7,7 @@ public class BulletController : MonoBehaviour
     [Header ("Parameters")]
     [SerializeField] float speed;
     [SerializeField] float damage;
+    [SerializeField] BulletAnimator animations;
     Vector3 ShotDirection;
 
 
@@ -15,7 +16,7 @@ public class BulletController : MonoBehaviour
     }    
 
 
-    void Update(){
+    void FixedUpdate(){
         Move();
         if(ScreenOffLimit()) DestroyBullet();
     }
@@ -35,6 +36,11 @@ public class BulletController : MonoBehaviour
 
     void DestroyBullet(){
         Destroy(this.gameObject);
+    }
+
+    void OnTriggerEnter2D(Collider2D otherObject) {
+        speed = 0f;
+        animations.TriggerExplosion();
     }
 
 }
