@@ -39,8 +39,10 @@ public class BulletController : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D otherObject) {
-        speed = 0f;
-        animations.TriggerExplosion();
+        if(otherObject.tag != "Player"){
+            speed = 0f;
+            animations.TriggerExplosion();
+        }
     }
 
 }
