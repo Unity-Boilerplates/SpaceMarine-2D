@@ -21,7 +21,7 @@ public class BulletController : MonoBehaviour
         if(ScreenOffLimit()) DestroyBullet();
     }
     void Move(){
-        transform.position += ShotDirection * Time.deltaTime * speed;
+        transform.position += ShotDirection * speed * Time.fixedDeltaTime;
     }
 
 
@@ -30,7 +30,7 @@ public class BulletController : MonoBehaviour
     }
 
     bool ScreenOffLimit(){
-        if(transform.position.x > GetScreenLimit().x) return true;
+        if(Mathf.Abs(transform.position.x) > GetScreenLimit().x) return true;
         else return false;
     }
 

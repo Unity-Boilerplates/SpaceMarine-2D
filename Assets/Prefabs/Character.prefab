@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 474229452328477484}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.125, y: 0.269, z: 0}
+  m_LocalPosition: {x: 0.299, y: 0.674, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7242389829261440840}
@@ -94,7 +94,7 @@ Transform:
   m_GameObject: {fileID: 7242389829261440818}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.5262, y: 3.5262, z: 3.5262}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 974818018}
   - {fileID: 7774814370462485469}
@@ -361,7 +361,7 @@ MonoBehaviour:
   touchingGround: 0
   jumpForce: 20
   groundLength: 0.05
-  colliderOffset: {x: 0.3, y: 0, z: 0}
+  colliderOffset: {x: 0.2, y: 0, z: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
