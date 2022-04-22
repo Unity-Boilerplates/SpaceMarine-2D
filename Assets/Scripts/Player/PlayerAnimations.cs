@@ -10,9 +10,7 @@ public class PlayerAnimations : MonoBehaviour
     [Header("Animator")]
     [SerializeField] Animator animator;
 
-    void FixedUpdate(){
-        Debug.Log(animator.GetBool("IsDucking"));
-    }
+
     public void MovementAnimationHandler(float speed) {
         if (speed <= 0.5f && speed >= -0.5f && speed != 0f) animator.speed = 0.5f;
         else animator.speed = 1f;

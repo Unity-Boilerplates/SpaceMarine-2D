@@ -18,7 +18,6 @@ public class PlayerInputActions : MonoBehaviour
 
 
     public void MoveStick(InputAction.CallbackContext context) {
-        Debug.Log(context.ReadValue<Vector2>().x + " " + context.ReadValue<Vector2>().y);
         if (context.ReadValue<Vector2>().y == -1f && context.ReadValue<Vector2>().x == 0  ) pressingDown = true;
         else pressingDown = false;
 
