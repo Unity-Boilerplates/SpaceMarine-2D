@@ -11,8 +11,8 @@ public class PlayerMovement : MonoBehaviour{
     [Header("Movement")]
     [SerializeField] float movementSpeed = 12f;
     [SerializeField] Transform feet;
+    [SerializeField] float hitForce;
     float horizontalMovement;
-   
 
     [Header("Gravity")]
     [SerializeField] bool touchingGround = false;
@@ -29,13 +29,18 @@ public class PlayerMovement : MonoBehaviour{
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update() {
-        MovePlayer();
-        checkTouchingGround();
+    void FixedUpdate(){
+        if(!playerController.GetStatus("Hurt")) MovePlayer();
+        else knockBack();
 
+        Debug.Log(playerController.GetStatus("Hurt"));
+        checkTouchingGround();
     }
 
+    void knockBack(){
+        transform.Translate(new Vector3(-1, 0f, 0f) * movementSpeed * Time.fixedDeltaTime);
 
+    }
     public bool GetTouchingGround(){
         return touchingGround;
     }
@@ -66,6 +71,8 @@ public class PlayerMovement : MonoBehaviour{
                 hit.collider.gameObject.GetComponent<EffectorCheck>().RotateDown();
         }
     }
+
+
     public void StartJump(){
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
@@ -83,7 +90,7 @@ public class PlayerMovement : MonoBehaviour{
     }
 
     void MovePlayer() {
-        transform.Translate(new Vector3(horizontalMovement, 0f, 0f) * movementSpeed * Time.deltaTime);
+        transform.Translate(new Vector3(horizontalMovement, 0f, 0f) * movementSpeed * Time.fixedDeltaTime);
         Flip(horizontalMovement);
     }
 

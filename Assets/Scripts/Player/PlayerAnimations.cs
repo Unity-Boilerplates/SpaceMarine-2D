@@ -9,7 +9,11 @@ public class PlayerAnimations : MonoBehaviour
 
     [Header("Animator")]
     [SerializeField] Animator animator;
+    [SerializeField] AnimationClip hitAnimation;
 
+    void Update(){
+        
+    }
 
     public void MovementAnimationHandler(float speed) {
         if (speed <= 0.5f && speed >= -0.5f && speed != 0f) animator.speed = 0.5f;
@@ -33,5 +37,8 @@ public class PlayerAnimations : MonoBehaviour
         if(playerController.GetStatus("TouchingGround")) animator.SetBool("IsAttacking", playerController.GetStatus("Attacking"));
     }
 
+    public void HurtAnimationHandler(){
+        animator.SetTrigger("Hurt");
+    }
 
 }

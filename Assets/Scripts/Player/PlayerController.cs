@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool showShotPoints;
     Dictionary<string, bool> status;
 
+    [Header ("Attributes")]
+    [SerializeField] int healthPoints;
+
     
 
     void Start() {
@@ -28,6 +31,7 @@ public class PlayerController : MonoBehaviour
         status.Add("Ducking", false);
         status.Add("FacingRight",true);
         status.Add("Attacking",false);
+        status.Add("Hurt",false);
 
 
     }
@@ -104,5 +108,15 @@ public class PlayerController : MonoBehaviour
     void OnDrawGizmos() {
         Gizmos.color = Color.red;
         if(showShotPoints) Gizmos.DrawWireSphere(this.shotPoint.position, 0.1f);
+    }
+
+    public void TakeDamage(int damage){
+        SetStatus("Hurt",true);
+        animations.HurtAnimationHandler();
+        healthPoints-= 10;
+    }
+
+    public void EndTakeDamage(){
+        SetStatus("Hurt",false);
     }
 }
