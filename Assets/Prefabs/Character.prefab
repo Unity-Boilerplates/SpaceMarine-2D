@@ -329,6 +329,7 @@ MonoBehaviour:
   bullet: {fileID: 8199258489524829453, guid: c84d8f34226606541837a16470c2df4a, type: 3}
   shotPoint: {fileID: 7774814370462485469}
   showShotPoints: 1
+  healthPoints: 0
 --- !u!114 &1104448655091640168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,6 +344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 5902882200462362924}
   animator: {fileID: 1239650569}
+  hitAnimation: {fileID: 0}
 --- !u!114 &7242389829261440819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,6 +360,7 @@ MonoBehaviour:
   playerController: {fileID: 5902882200462362924}
   movementSpeed: 9
   feet: {fileID: 974818018}
+  hitForce: 0
   touchingGround: 0
   jumpForce: 20
   groundLength: 0.05
