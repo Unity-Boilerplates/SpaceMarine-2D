@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayerAnimations : MonoBehaviour
 {
     [Header("Controller")]
-    [SerializeField] PlayerController playerController;
+        [SerializeField] PlayerController playerController;
 
     [Header("Animator")]
-    [SerializeField] Animator animator;
-    [SerializeField] AnimationClip hitAnimation;
+        [SerializeField] Animator animator;
+        [SerializeField] AnimationClip hitAnimation;
 
     void Update(){
         

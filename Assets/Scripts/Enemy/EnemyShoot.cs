@@ -5,9 +5,10 @@ using UnityEngine;
 public class EnemyShoot : MonoBehaviour
 {
     [Header ("Parameters")]
-    [SerializeField] float speed;
-    [SerializeField] float damage;
-    [SerializeField] BulletAnimator animations;
+        [SerializeField] float speed;
+        [SerializeField] float damage;
+        [SerializeField] BulletAnimator animations;
+
     Vector3 ShotDirection;
 
 

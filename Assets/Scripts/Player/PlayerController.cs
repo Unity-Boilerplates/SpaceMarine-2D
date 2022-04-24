@@ -5,23 +5,25 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header ("Component Controllers")]
-    [SerializeField] PlayerAnimations animations;
-    [SerializeField] PlayerMovement movement;
-    [SerializeField] PlayerInputActions input;
+        [SerializeField] PlayerAnimations animations;
+        [SerializeField] PlayerMovement movement;
+        [SerializeField] PlayerInputActions input;
+        [SerializeField] PlayerSound sounds;
 
 
     [Header ("Shotting")]
-    [SerializeField] GameObject bullet;
-    [SerializeField] Transform shotPoint;
+        [SerializeField] GameObject bullet;
+        [SerializeField] Transform shotPoint;
 
+    [Header("Attributes")]
+        [SerializeField] int healthPoints;
 
     [Header ("Gizmos")]
-    [SerializeField] bool showShotPoints;
+        [SerializeField] bool showShotPoints;
+
     Dictionary<string, bool> status;
 
-    [Header ("Attributes")]
-    [SerializeField] int healthPoints;
-
+    
     
 
     void Start() {
@@ -95,6 +97,9 @@ public class PlayerController : MonoBehaviour
     public void Shot(){
         if(GetStatus("TouchingGround")) SetStatus("Attacking",true);
         GameObject newShot;
+
+        sounds.PlayShot();
+
         newShot = Instantiate(bullet, shotPoint.position, Quaternion.identity);
         newShot.transform.parent = GameObject.Find("__Dynamic").transform; 
         

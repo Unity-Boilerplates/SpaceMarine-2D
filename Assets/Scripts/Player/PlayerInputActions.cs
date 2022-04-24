@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerInputActions : MonoBehaviour
 {
     [Header("Controller")]
-    [SerializeField] PlayerController playerController;
+        [SerializeField] PlayerController playerController;
 
     
     bool pressingDown = false;

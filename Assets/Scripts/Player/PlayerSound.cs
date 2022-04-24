@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class PlayerSound : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header ("Player Controller")]
+        [SerializeField] PlayerController playerController;
+
+    [Header("Clips")]
+        [SerializeField] AudioClip inAirClip;
+        [SerializeField] AudioClip shotClip;
+        [SerializeField] AudioClip walkClip;
+
+    AudioSource audioSource;
+
+    private void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlayShot()
     {
-        
+        audioSource.PlayOneShot(shotClip);
     }
+
+
+
 }

@@ -6,24 +6,24 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour{
     [Header("Controller")]
-    [SerializeField] PlayerController playerController;
+        [SerializeField] PlayerController playerController;
 
     [Header("Movement")]
-    [SerializeField] float movementSpeed = 12f;
-    [SerializeField] Transform feet;
-    [SerializeField] float hitForce;
-    float horizontalMovement;
+        [SerializeField] float movementSpeed = 12f;
+        [SerializeField] Transform feet;
+        [SerializeField] float hitForce;
 
     [Header("Gravity")]
-    [SerializeField] bool touchingGround = false;
-    [SerializeField] float jumpForce = 20f;
-    Rigidbody2D rb;
-
+        [SerializeField] bool touchingGround = false;
+        [SerializeField] float jumpForce = 20f;
 
     [Header("Raycast")]
-    [SerializeField] float groundLength = 0.5f;
-    [SerializeField] Vector3 colliderOffset;
-    [SerializeField] LayerMask groundLayer;
+        [SerializeField] float groundLength = 0.5f;
+        [SerializeField] Vector3 colliderOffset;
+        [SerializeField] LayerMask groundLayer;
+
+    Rigidbody2D rb;
+    float horizontalMovement;
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
@@ -32,8 +32,6 @@ public class PlayerMovement : MonoBehaviour{
     void FixedUpdate(){
         if(!playerController.GetStatus("Hurt")) MovePlayer();
         else knockBack();
-
-        Debug.Log(playerController.GetStatus("Hurt"));
         checkTouchingGround();
     }
 

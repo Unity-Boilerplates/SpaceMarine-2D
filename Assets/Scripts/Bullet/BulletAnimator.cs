@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletAnimator : MonoBehaviour
 {
-    [SerializeField] Animator animator;
+    Animator animator;
 
     void Start(){
         animator = GetComponent<Animator>();

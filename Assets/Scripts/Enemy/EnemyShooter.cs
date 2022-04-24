@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyShooter : MonoBehaviour
 {
+    [Header ("Prefabs")]
     [SerializeField] GameObject bullet;
 
 

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EffectorCheck : MonoBehaviour {
+    [Header ("Platform Rotation")]
+        [SerializeField] float waitTime = 0f;
+
     private PlatformEffector2D effector;
-    [SerializeField] float waitTime = 0f;
     public bool jumpingOff = false;
     void Start() {
         effector = GetComponent<PlatformEffector2D>();
